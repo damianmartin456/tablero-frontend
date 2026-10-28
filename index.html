@@ -97,6 +97,75 @@
         <label for="foco" class="text-sm block mb-1">Foco principal de la semana</label>
         <input id="foco" type="text" class="w-full bg-black/20 rounded-full px-4 py-2 text-sm outline-none" placeholder="Ej. cierre de tickets, automatizaciones">
       </section>
+
+      <section id="accesos-s" class="card p-5 md:col-span-7">
+        <h2>Accesos directos</h2><p class="sub mb-4">Tus páginas de uso diario, a un toque.</p>
+        <div id="accesos" class="flex flex-wrap gap-2 mb-4"></div>
+        <div class="flex flex-wrap gap-2">
+          <input id="lkN" type="text" class="bg-black/25 rounded-full px-4 py-2 text-sm outline-none" style="width:140px" placeholder="Nombre" aria-label="Nombre del acceso">
+          <input id="lkU" type="text" class="bg-black/25 rounded-full px-4 py-2 text-sm outline-none flex-1 min-w-[160px]" placeholder="Dirección (https://…)" aria-label="Dirección del acceso">
+          <button id="lkAdd" class="pill on text-sm">+ Acceso</button>
+        </div>
+      </section>
+
+      <section id="clima-s" class="card p-5 md:col-span-5">
+        <h2>Clima en Mérida</h2><p id="cEst" class="sub mb-3">Cargando…</p>
+        <div class="flex items-end gap-4 mb-1"><span id="cTemp" class="text-5xl font-extrabold">–°</span><span id="cDesc" class="text-lg mb-1"></span></div>
+        <p id="cExtra" class="sub mb-4"></p>
+        <div id="cDias" class="grid grid-cols-5 gap-2"></div>
+      </section>
+
+      <section id="habitos-s" class="card p-5 md:col-span-5">
+        <h2>Hábitos</h2><p class="sub mb-4">Los últimos 7 días; el círculo con borde es hoy.</p>
+        <div id="habitos" class="space-y-3 mb-4"></div>
+        <div class="flex gap-2">
+          <input id="hbN" type="text" class="bg-black/25 rounded-full px-4 py-2 text-sm outline-none flex-1 min-w-0" placeholder="Nuevo hábito" aria-label="Nuevo hábito">
+          <button id="hbAdd" class="pill on text-sm">+ Hábito</button>
+        </div>
+      </section>
+
+      <section id="fechas-s" class="card p-5 md:col-span-7">
+        <h2>Fechas importantes</h2><p class="sub mb-4">Cuenta regresiva de lo que viene.</p>
+        <ul id="fechas" class="space-y-3 mb-4"></ul>
+        <div class="flex flex-wrap gap-2">
+          <input id="fcN" type="text" class="bg-black/25 rounded-full px-4 py-2 text-sm outline-none flex-1 min-w-[140px]" placeholder="Evento" aria-label="Nombre del evento">
+          <input id="fcD" type="date" class="bg-black/25 rounded-full px-4 py-2 text-sm outline-none" style="color-scheme:dark" aria-label="Fecha">
+          <button id="fcAdd" class="pill on text-sm">+ Fecha</button>
+        </div>
+      </section>
+
+      <section id="salud-s" class="card p-5 md:col-span-12">
+        <div class="flex flex-wrap items-center gap-3 mb-1"><h2>Salud</h2><span id="hEstado" class="sub"></span></div>
+        <p class="sub mb-4">Tus métricas de Google Health (Fitbit y relojes Pixel).</p>
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <button id="hLogin" class="pill on">Conectar Google Health</button>
+          <button id="hLogout" class="pill hidden text-sm">Salir</button>
+        </div>
+        <div id="hBox" class="hidden">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <p class="sub">Pasos de hoy</p>
+              <div class="flex items-end gap-3 mb-2"><span id="hPasos" class="text-4xl font-extrabold">–</span><span id="hPct" class="sub mb-1"></span></div>
+              <div class="rounded-full overflow-hidden mb-2" style="height:10px;background:rgba(255,255,255,.12)"><div id="hBarra" style="height:100%;width:0;background:#1f7bff;transition:.4s"></div></div>
+              <label class="sub flex items-center gap-2 mb-4">Meta diaria <input id="hMeta" type="number" min="1000" step="500" class="bg-black/25 rounded-full px-3 py-1 text-sm outline-none text-white" style="width:90px"></label>
+              <p class="sub mb-2">Últimos 7 días</p>
+              <div id="hSemana" class="flex gap-2 items-end" style="height:96px"></div>
+            </div>
+            <div>
+              <p class="sub">Sueño de anoche</p>
+              <div id="hSueno" class="text-4xl font-extrabold mb-1">–</div>
+              <p id="hSuenoDet" class="sub mb-3"></p>
+              <div id="hFases" class="flex rounded-full overflow-hidden mb-2" style="height:12px;background:rgba(255,255,255,.12)"></div>
+              <p id="hLeyenda" class="sub"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notas-s" class="card p-5 md:col-span-12">
+        <h2>Notas rápidas</h2><p class="sub mb-3">Escribe y se guarda solo.</p>
+        <textarea id="notas" rows="5" class="w-full bg-black/20 rounded-2xl p-4 text-sm outline-none resize-y" placeholder="Ideas, pendientes sueltos, números que no quieres perder…" aria-label="Notas rápidas"></textarea>
+      </section>
     </div>
     <p class="sub mt-6" id="fecha"></p>
     <p class="text-xs text-slate-400 mt-1">Todo se guarda en este navegador. Usa ⤓ para exportar una copia y subirla a tu Drive.</p>
@@ -135,7 +204,10 @@ prioridades:[{x:'Proyecto actual de IT / hotel',d:false},{x:'Gestión escolar y 
 pendientes:[{x:'Revisar respaldos de red y antenas AP',d:false},{x:'Actualizar registros de gastos escolares',d:false},{x:'Pendientes de domótica y hogar',d:false}],
 energia:'',foco:'',nombre:'Damian',cal:''};
 let S;try{S=JSON.parse(localStorage.getItem(KEY))||structuredClone(base)}catch(e){S=structuredClone(base)}
-if(S.nombre===undefined)S.nombre='Damian';
+function norm(){if(S.nombre===undefined)S.nombre='Damian';
+  S.links=S.links||[{n:'GitHub',u:'https://github.com'},{n:'Gmail',u:'https://mail.google.com'},{n:'Google Calendar',u:'https://calendar.google.com'}];
+  S.fechas=S.fechas||[];S.habitos=S.habitos||[{n:'Ejercicio',dias:[]},{n:'Tomar agua',dias:[]},{n:'Dormir temprano',dias:[]}];S.notas=S.notas||'';S.metaPasos=S.metaPasos||8000}
+norm();
 const save=()=>{S.ts=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(ghOn()){clearTimeout(tmr);estado('Cambios sin enviar…');tmr=setTimeout(()=>push(),2500)}};
 document.getElementById('fecha').textContent=new Date().toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
@@ -166,13 +238,14 @@ function pintar(){
   const e=document.getElementById('energia');e.innerHTML='';
   ['Alto','Medio','Bajo'].forEach(n=>{const b=document.createElement('button');b.className='pill';b.textContent=n;b.setAttribute('aria-pressed',S.energia===n);b.onclick=()=>{S.energia=S.energia===n?'':n;save();pintar()};e.append(b)});
   document.getElementById('foco').value=S.foco;
+  extras();
 }
 document.getElementById('foco').oninput=e=>{S.foco=e.target.value;save()};
 const nm=document.getElementById('nombre');nm.value=S.nombre;nm.oninput=()=>{S.nombre=nm.value;save()};
 document.getElementById('buscar').oninput=filtrar;
 document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const k=b.dataset.add;S[k].push(k==='agenda'?{t:'',x:'',d:false}:{x:'',d:false});save();pintar()});
 document.getElementById('exportar').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='tablero-de-vida.json';a.click()};
-document.getElementById('importar').onchange=ev=>{const f=ev.target.files[0];if(!f)return;f.text().then(t=>{try{S=JSON.parse(t);save();nm.value=S.nombre||'';pintar();pintarCal()}catch(e){alert('El archivo no es una copia válida.')}})};
+document.getElementById('importar').onchange=ev=>{const f=ev.target.files[0];if(!f)return;f.text().then(t=>{try{S=JSON.parse(t);norm();save();nm.value=S.nombre||'';pintar();pintarCal()}catch(e){alert('El archivo no es una copia válida.')}})};
 
 function calSrc(raw){raw=(raw||'').trim();const m=raw.match(/src=["']([^"']+)["']/i);let u=(m?m[1]:raw).replace(/&amp;/g,'&');
   if(!/^https:\/\/calendar\.google\.com\/calendar\//.test(u))return'';
@@ -202,7 +275,7 @@ async function pull(){
     if(r.status===404){const rr=await fetch('https://api.github.com/repos/'+GH.repo,{headers:hd()});if(!rr.ok)throw new Error(errTxt(rr));sha=null;return push()}
     if(!r.ok)throw new Error(errTxt(r));
     const j=await r.json();sha=j.sha;const remote=JSON.parse(dec(j.content));
-    if((remote.ts||0)>(S.ts||0)){S=remote;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}nm.value=S.nombre||'';pintar();pintarCal();estado('Actualizado desde GitHub · '+hora())}
+    if((remote.ts||0)>(S.ts||0)){S=remote;norm();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}nm.value=S.nombre||'';pintar();pintarCal();estado('Actualizado desde GitHub · '+hora())}
     else if((remote.ts||0)<(S.ts||0))return push();
     else estado('Sincronizado con GitHub · '+hora());
   }catch(e){estado(e.message==='Failed to fetch'?'Sin conexión con GitHub':e.message,true)}
@@ -278,7 +351,7 @@ $('ghAbrir').addEventListener('click',()=>{$('ghGid').value=gid()});
 $('ghGidOk').onclick=()=>{const v=$('ghGid').value.trim();
   if(v&&!/\.apps\.googleusercontent\.com$/.test(v)){alert('El ID de cliente debe terminar en .apps.googleusercontent.com');return}
   try{v?localStorage.setItem('tablero-gid',v):localStorage.removeItem('tablero-gid')}catch(e){}
-  gCli=null;gTok=null;gSesion(false);$('gEventos').innerHTML='';gEst('');dlg.close();pintarCal()};
+  gCli=null;gTok=null;hCli=null;hTok=null;hSesion(false);gSesion(false);$('gEventos').innerHTML='';gEst('');dlg.close();pintarCal()};
 
 /* ---- Enlace de configuración para otro dispositivo ---- */
 $('ghLink').onclick=async()=>{
@@ -292,6 +365,144 @@ $('ghLink').onclick=async()=>{
   if(p.get('repo')&&p.get('token')){GH={repo:p.get('repo'),path:p.get('path')||'tablero-de-vida.json',token:p.get('token')};try{localStorage.setItem('tablero-gh',JSON.stringify(GH))}catch(e){}c=true}
   if(p.get('gid')){try{localStorage.setItem('tablero-gid',p.get('gid'))}catch(e){}c=true}
   if(c){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}})();
+
+/* ---- Google Health API (pasos y sueño) ---- */
+const HSC='https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly https://www.googleapis.com/auth/googlehealth.sleep.readonly';
+const HB='https://health.googleapis.com/v4/users/me/dataTypes/';
+let hTok=null,hExp=0,hCli=null,hTmr=null,hSilent=false,hSerie=null;
+const hEst=(m,err)=>{$('hEstado').textContent=m;$('hEstado').style.color=err?'#ff9d9d':''};
+function hSesion(on){$('hLogin').classList.toggle('hidden',on);$('hLogout').classList.toggle('hidden',!on);$('hBox').classList.toggle('hidden',!on);clearTimeout(hTmr);
+  if(on)hTmr=setTimeout(()=>{hSilent=true;hPedir()},Math.max(30000,hExp-Date.now()))}
+async function hPedir(){
+  if(!gid()){hEst('Primero guarda tu ID de cliente de Google en ⚙.',true);return}
+  try{await gLib();
+    if(!hCli)hCli=google.accounts.oauth2.initTokenClient({client_id:gid(),scope:HSC,
+      callback:r=>{
+        if(r.error){hSesion(false);hEst(hSilent?'':(r.error==='access_denied'?'Permiso denegado':'Error de Google: '+r.error),!hSilent);return}
+        hTok=r.access_token;hExp=Date.now()+(r.expires_in-60)*1000;try{localStorage.setItem('tablero-h','1')}catch(e){}hSesion(true);hDatos()},
+      error_callback:e=>{hSesion(false);hEst(hSilent?'':(e&&e.type==='popup_closed'?'Cerraste la ventana de Google':'No se pudo abrir la ventana de Google. Revisa el bloqueador de ventanas emergentes.'),!hSilent)}});
+    hCli.requestAccessToken({prompt:hSilent?'none':''});
+  }catch(e){hEst(e.message,true)}
+}
+async function hGet(path,opt){
+  const r=await fetch(HB+path,{...(opt||{}),headers:{Authorization:'Bearer '+hTok,Accept:'application/json',...((opt&&opt.headers)||{})}});
+  if(!r.ok){let reason='';try{const j=await r.json();reason=(j.error&&j.error.details&&j.error.details[0]&&j.error.details[0].reason)||''}catch(e){}
+    const e=new Error('HTTP '+r.status);e.status=r.status;e.reason=reason;throw e}
+  return r.json();
+}
+async function hDatos(){
+  if(!hTok)return;hEst('Cargando…');
+  try{
+    const hoy=new Date(),d0=new Date(hoy.getFullYear(),hoy.getMonth(),hoy.getDate());
+    const ini=new Date(d0);ini.setDate(d0.getDate()-6);const fin=new Date(d0);fin.setDate(d0.getDate()+1);
+    const civ=d=>({date:{year:d.getFullYear(),month:d.getMonth()+1,day:d.getDate()},time:{hours:0,minutes:0,seconds:0,nanos:0}});
+    const desde=new Date(d0);desde.setDate(d0.getDate()-2);
+    const [ps,sl]=await Promise.all([
+      hGet('steps/dataPoints:dailyRollUp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({range:{start:civ(ini),end:civ(fin)},windowSizeDays:1})}),
+      hGet('sleep/dataPoints:reconcile?filter='+encodeURIComponent('sleep.interval.civil_end_time >= "'+dk(desde)+'"'))]);
+    const dias={};
+    (ps.rollupDataPoints||[]).forEach(p=>{const c=p.civilStartTime&&p.civilStartTime.date;if(c)dias[c.year+'-'+pad(c.month)+'-'+pad(c.day)]=Number((p.steps&&p.steps.countSum)||0)});
+    const serie=[];for(let k=6;k>=0;k--){const d=new Date(d0);d.setDate(d0.getDate()-k);serie.push({d,v:dias[dk(d)]||0})}
+    hSerie=serie;pintarPasos();
+    const noches=(sl.dataPoints||[]).map(p=>p.sleep).filter(s=>s&&s.interval&&(!s.metadata||s.metadata.main!==false))
+      .sort((a,b)=>a.interval.endTime<b.interval.endTime?1:-1);
+    pintarSueno(noches[0]);
+    hEst('Actualizado '+hora());
+  }catch(e){
+    if(e.status===401){hTok=null;hSesion(false);hEst('La sesión caducó. Conecta de nuevo.',true)}
+    else if(e.reason==='ACCOUNT_NOT_LINKED')hEst('Tu cuenta de Google no está vinculada a Google Health (Fitbit).',true)
+    else if(e.status===403)hEst('Google rechazó el acceso: activa “Google Health API” en tu proyecto de Google Cloud y acepta los permisos.',true)
+    else hEst(e.message==='Failed to fetch'?'Sin conexión':'No se pudo leer Google Health ('+(e.status||e.message)+')',true)
+  }
+}
+function pintarPasos(){
+  if(!hSerie)return;const meta=S.metaPasos||8000,hoy=hSerie[hSerie.length-1].v,pct=Math.round(hoy/meta*100);
+  $('hPasos').textContent=hoy.toLocaleString('es-MX');$('hPct').textContent=pct+'% de la meta';
+  $('hBarra').style.width=Math.min(100,pct)+'%';if(document.activeElement!==$('hMeta'))$('hMeta').value=meta;
+  const max=Math.max(meta,...hSerie.map(s=>s.v)),box=$('hSemana');box.innerHTML='';
+  hSerie.forEach((s,i)=>{const c=document.createElement('div');c.className='flex-1 flex flex-col items-center justify-end gap-1';c.style.height='100%';
+    const b=document.createElement('div');b.style.cssText='width:100%;border-radius:6px;height:'+Math.max(2,Math.round(s.v/max*68))+'px;background:'+(i===hSerie.length-1?'#1f7bff':'rgba(111,176,255,.45)');
+    b.title=s.v.toLocaleString('es-MX')+' pasos';
+    const l=document.createElement('span');l.className='sub';l.textContent=s.d.toLocaleDateString('es-MX',{weekday:'narrow'}).toUpperCase();
+    c.append(b,l);box.append(c)})}
+function pintarSueno(s){
+  const f=$('hFases');f.innerHTML='';
+  if(!s){$('hSueno').textContent='Sin datos';$('hSuenoDet').textContent='No hay un registro de sueño reciente.';$('hLeyenda').textContent='';return}
+  const m=Number((s.summary&&s.summary.minutesAsleep)||0),hh=t=>new Date(t).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',hour12:false});
+  $('hSueno').textContent=Math.floor(m/60)+' h '+pad(m%60)+' min';
+  $('hSuenoDet').textContent='De '+hh(s.interval.startTime)+' a '+hh(s.interval.endTime);
+  const ET={DEEP:['Profundo','#1f7bff'],LIGHT:['Ligero','#6fb0ff'],REM:['REM','#b48cff'],AWAKE:['Despierto','#6b7587']};
+  const st=((s.summary&&s.summary.stagesSummary)||[]).filter(x=>ET[x.type]),tot=st.reduce((a,x)=>a+Number(x.minutes),0)||1;
+  st.forEach(x=>{const d=document.createElement('div');d.style.cssText='height:100%;width:'+(Number(x.minutes)/tot*100)+'%;background:'+ET[x.type][1];d.title=ET[x.type][0]+' '+x.minutes+' min';f.append(d)});
+  $('hLeyenda').textContent=st.map(x=>ET[x.type][0]+' '+x.minutes+' min').join(' · ');
+}
+$('hLogin').onclick=()=>{hSilent=false;hPedir()};
+$('hLogout').onclick=()=>{if(hTok&&window.google)google.accounts.oauth2.revoke(hTok,()=>{});hTok=null;hSerie=null;try{localStorage.removeItem('tablero-h')}catch(e){}hSesion(false);hEst('Sesión cerrada')};
+$('hMeta').onchange=()=>{S.metaPasos=Math.max(1000,Number($('hMeta').value)||8000);save();pintarPasos()};
+setInterval(()=>{if(hTok&&Date.now()<hExp)hDatos()},900000);
+
+/* ---- Widgets extra: accesos, clima, hábitos, fechas, notas ---- */
+const pad=n=>String(n).padStart(2,'0');
+const dk=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const quitar=(label,fn)=>{const x=document.createElement('button');x.textContent='✕';x.className='text-slate-400 hover:text-white px-1';x.setAttribute('aria-label',label);x.onclick=fn;return x};
+function extras(){accesos();habitos();fechas();const t=$('notas');if(t.value!==S.notas)t.value=S.notas}
+
+function accesos(){const b=$('accesos');b.innerHTML='';
+  S.links.forEach((l,i)=>{if(!/^https?:\/\//i.test(l.u))return;
+    const w=document.createElement('span');w.className='pill flex items-center gap-2 text-sm';
+    const a=document.createElement('a');a.href=l.u;a.target='_blank';a.rel='noopener';a.textContent=l.n;
+    w.append(a,quitar('Quitar '+l.n,()=>{S.links.splice(i,1);save();accesos()}));b.append(w)})}
+$('lkAdd').onclick=()=>{const n=$('lkN').value.trim();let u=$('lkU').value.trim();if(!n||!u)return;
+  if(!/^https?:\/\//i.test(u))u='https://'+u;
+  try{new URL(u)}catch(e){alert('La dirección no es válida');return}
+  S.links.push({n,u});$('lkN').value='';$('lkU').value='';save();accesos()};
+
+const WC=c=>c===0?'Despejado':c<=2?'Poco nublado':c===3?'Nublado':c<=48?'Niebla':c<=57?'Llovizna':c<=67?'Lluvia':c<=77?'Nieve':c<=82?'Chubascos':'Tormenta';
+async function clima(){
+  try{
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=20.97&longitude=-89.62&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=America%2FMerida&forecast_days=5');
+    if(!r.ok)throw new Error();
+    const j=await r.json(),c=j.current,d=j.daily;
+    $('cTemp').textContent=Math.round(c.temperature_2m)+'°';$('cDesc').textContent=WC(c.weather_code);
+    $('cExtra').textContent='Sensación '+Math.round(c.apparent_temperature)+'° · Humedad '+c.relative_humidity_2m+'% · Lluvia hoy '+d.precipitation_probability_max[0]+'%';
+    const box=$('cDias');box.innerHTML='';
+    d.time.forEach((t,i)=>{const e=document.createElement('div');e.className='text-center text-sm rounded-xl py-2';e.style.background='rgba(255,255,255,.06)';
+      const a=document.createElement('div');a.className='sub';a.textContent=new Date(t+'T12:00:00').toLocaleDateString('es-MX',{weekday:'short'});
+      const b=document.createElement('div');b.className='font-bold';b.textContent=Math.round(d.temperature_2m_max[i])+'° / '+Math.round(d.temperature_2m_min[i])+'°';
+      const p=document.createElement('div');p.className='text-sky-300 text-xs';p.textContent=d.precipitation_probability_max[i]+'%';
+      e.append(a,b,p);box.append(e)});
+    $('cEst').textContent='Actualizado '+hora();
+  }catch(e){$('cEst').textContent='No se pudo cargar el clima'}
+}
+
+function racha(h){const s=new Set(h.dias),d=new Date();if(!s.has(dk(d)))d.setDate(d.getDate()-1);let n=0;while(s.has(dk(d))){n++;d.setDate(d.getDate()-1)}return n}
+function habitos(){const box=$('habitos');box.innerHTML='';const hoy=new Date();
+  S.habitos.forEach((h,i)=>{const r=document.createElement('div');r.className='flex items-center gap-3';
+    const n=document.createElement('span');n.className='flex-1 min-w-0 truncate';n.textContent=h.n;
+    const dots=document.createElement('span');dots.className='flex gap-1';
+    for(let k=6;k>=0;k--){const d=new Date(hoy);d.setDate(hoy.getDate()-k);const key=dk(d),on=h.dias.includes(key);
+      const b=document.createElement('button');b.className='rounded-full';
+      b.style.cssText='width:18px;height:18px;border:1px solid rgba(255,255,255,.3);background:'+(on?'#1f7bff':'transparent')+(k===0?';outline:1px solid #6fb0ff;outline-offset:2px':'');
+      b.setAttribute('aria-label',h.n+', '+key+(on?', hecho':', pendiente'));b.setAttribute('aria-pressed',on);
+      b.onclick=()=>{const j=h.dias.indexOf(key);if(j>=0)h.dias.splice(j,1);else h.dias.push(key);h.dias=h.dias.sort().slice(-120);save();habitos()};dots.append(b)}
+    const st=document.createElement('span');st.className='sub w-16 text-right';st.textContent='Racha '+racha(h);
+    r.append(n,dots,st,quitar('Quitar '+h.n,()=>{S.habitos.splice(i,1);save();habitos()}));box.append(r)})}
+$('hbAdd').onclick=()=>{const n=$('hbN').value.trim();if(!n)return;S.habitos.push({n,dias:[]});$('hbN').value='';save();habitos()};
+
+function fechas(){const ul=$('fechas');ul.innerHTML='';const hoy=new Date();hoy.setHours(0,0,0,0);
+  S.fechas.map((f,i)=>({n:f.n,i,d:Math.round((new Date(f.f+'T00:00:00')-hoy)/864e5)}))
+    .sort((a,b)=>(a.d<0)-(b.d<0)||Math.abs(a.d)-Math.abs(b.d)).forEach(f=>{
+    const li=document.createElement('li');li.className='flex items-center gap-3';
+    const n=document.createElement('span');n.className='flex-1 min-w-0';n.textContent=f.n;
+    const d=document.createElement('span');d.className='font-bold '+(f.d<0?'text-slate-500':f.d<=7?'text-amber-300':'text-sky-300');
+    d.textContent=f.d===0?'Hoy':f.d===1?'Mañana':f.d>1?'Faltan '+f.d+' días':'Hace '+(-f.d)+(f.d===-1?' día':' días');
+    li.append(n,d,quitar('Quitar '+f.n,()=>{S.fechas.splice(f.i,1);save();fechas()}));ul.append(li)})}
+$('fcAdd').onclick=()=>{const n=$('fcN').value.trim(),f=$('fcD').value;if(!n||!f){alert('Escribe el evento y elige la fecha.');return}
+  S.fechas.push({n,f});$('fcN').value='';$('fcD').value='';save();fechas()};
+
+$('notas').oninput=e=>{S.notas=e.target.value;save()};
+clima();setInterval(clima,1800000);
+if(gid()){let h=false;try{h=!!localStorage.getItem('tablero-h')}catch(e){}if(h){hSilent=true;hPedir()}}
 
 pintar();pintarCal();
 if(gid()){let h=false;try{h=!!localStorage.getItem('tablero-g')}catch(e){}if(h){gSilent=true;gPedir()}}
